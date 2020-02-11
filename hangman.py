@@ -1,10 +1,20 @@
+class bcolors:
+    Purple = '\033[95m'
+    Blue = '\033[94m'
+    Green = '\033[92m'
+    Yellow = '\033[93m'
+    Red = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 from random_words import RandomWords
 # print(word)
 
-print('\nWelcome to @TheLukeRussell\'s Hangman Game! ')
-print('\n\tThe instructions are simple, guess the random word before time runs out for the Hangman')
+print(f'{bcolors.Purple}{bcolors.BOLD}\n\t\tWelcome to @TheLukeRussell\'s Hangman Game!{bcolors.ENDC}')
+print(f'{bcolors.Yellow}\n\tThe instructions are simple, guess the random word before time runs out for the Hangman{bcolors.ENDC}')
 
-msg = '\nDo you think that you can save him?'
+msg = f'{bcolors.Red}\nDo you think that you can save him? '
 shall = input("%s (Y/N) " % msg).lower() == 'y'
 def yn_choice(message, default='y'):
     choices = 'Y/n' if default.lower() in ('y', 'yes') else 'y/N'
@@ -12,10 +22,10 @@ def yn_choice(message, default='y'):
     values = ('y', 'yes', '') if choices == 'Y/n' else ('y', 'yes')
     return choice.strip().lower() in values
 
-print('\nFirst things first, what is your name?')
+print(f'{bcolors.Blue}\nFirst things first, what is your name?')
 name = input( )
 
-print('\nOk ' + name + '! let\'s get started!')
+print(f'\nOk ' + name + '! let\'s get started!{bcolors.ENDC}')
 
 number_of_guesses = 0
 number_of_guesses = number_of_guesses + 1
@@ -114,13 +124,16 @@ def hangMan():
     new_blanks_list = list(word_blanks)
     guess_list = []
 
+    print(f'\n{bcolors.Green}')
+
     show_hang(number_of_guesses, word)
+
     print('\n')
     print("" + ' '.join(blanks_list))
     print('\nGuess a letter!')
     print(word)
 
-    while number_of_guesses < 8:
+    while number_of_guesses < 9:
         guess = input("> ")
         guess = guess.lower()
     
@@ -147,6 +160,10 @@ def hangMan():
                 if number_of_guesses < 9:
                     print('Keep guessing')
                     print(''.join(blanks_list))
+
+                else:
+                    print(f'{bcolors.Red}{bcolors.BOLD}Oh no, you killed him!{bcolors.ENDC}')
+                    break
         
             elif word_list != blanks_list:
 
