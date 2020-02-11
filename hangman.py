@@ -32,8 +32,8 @@ def show_hang(number_of_guesses, word):
     elif (number_of_guesses == 1):
         print( "________")
         print( "     |")
-        print("|    O")
-        print("|")
+        print( "|    O")
+        print( "|")
         print( "|")
         print( "|")
         print( "|________")   
@@ -116,7 +116,7 @@ def hangMan():
 
     show_hang(number_of_guesses, word)
     print('\n')
-    print(blanks_list)
+    print("" + ' '.join(blanks_list))
     print('\nGuess a letter!')
     print(word)
 
@@ -144,18 +144,19 @@ def hangMan():
                 number_of_guesses = number_of_guesses + 1
                 show_hang(number_of_guesses, word)
 
-                if number_of_guesses < 8:
+                if number_of_guesses < 9:
                     print('Keep guessing')
                     print(''.join(blanks_list))
         
             elif word_list != blanks_list:
+
                 blank_list = new_blanks_list[:]
                 print(''.join(blanks_list))
 
                 if word_list == blanks_list:
                     print('\n You Win!!')
+                # quit()
                 else:
-                    print('guess another')
-            show_hang(number_of_guesses, word)
+                    print('Great guess, keep Guessing!')
                     
 hangMan()
