@@ -25,7 +25,7 @@ def yn_choice(message, default='y'):
 print(f'{bcolors.Blue}\nFirst things first, what is your name?')
 name = input( )
 
-print(f'\nOk ' + name + '! let\'s get started!{bcolors.ENDC}')
+print(f'\nOk ' + name + '! let\'s get started!')
 
 number_of_guesses = 0
 number_of_guesses = number_of_guesses + 1
@@ -151,7 +151,7 @@ def hangMan():
                 if guess == word[i]:
                     new_blanks_list[i] = word_list[i]
                 i = i + 1
-        
+
             if new_blanks_list == blanks_list:
                 print('Your letter isn\'t here')
                 number_of_guesses = number_of_guesses + 1
@@ -169,11 +169,15 @@ def hangMan():
 
                 blank_list = new_blanks_list[:]
                 print(''.join(blanks_list))
+                show_hang(number_of_guesses, word)
 
-                if word_list == blanks_list:
-                    print('\n You Win!!')
-                # quit()
+                if word_list == new_blanks_list:
+                    print("" + ' '.join(new_blanks_list))
+                    print(f'{bcolors.BOLD}\n You Win!!{bcolors.ENDC}')
+                    break
                 else:
                     print('Great guess, keep Guessing!')
+                    print("" + ' '.join(new_blanks_list))
+                    # break
                     
 hangMan()
