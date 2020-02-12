@@ -94,22 +94,6 @@ def show_hang(number_of_guesses, word):
         print( "|   \|/")
         print( "|    |")
         print( "|   / \ ")
-        print( "|________")   
-    elif (number_of_guesses == 8):
-        print( "_________")
-        print( "|    |")
-        print( "|    O")
-        print( "|   \|/")
-        print( "|    |")
-        print( "|  _/ \ ")
-        print( "|________")
-    elif (number_of_guesses == 9):
-        print( "_________")
-        print( "|    |")
-        print( "|    O")
-        print( "|   \|/")
-        print( "|    |")
-        print( "|  _/ \_ ")
         print( "|________")
 
 rw = RandomWords()
@@ -120,7 +104,9 @@ def hangMan():
     word = rw.random_word()
     word_list = list(word)
     word_blanks = '_'*len(word) # "__________"
+    # ['_', '_', '_']
     blanks_list = list(word_blanks) # 
+    # ['_', 'u', '_']
     new_blanks_list = list(word_blanks)
     guess_list = []
 
@@ -133,7 +119,7 @@ def hangMan():
     print('\nGuess a letter!')
     print(word)
 
-    while number_of_guesses < 9:
+    while number_of_guesses < 7:
         guess = input("> ")
         guess = guess.lower()
     
@@ -152,28 +138,28 @@ def hangMan():
                     new_blanks_list[i] = word_list[i]
                 i = i + 1
 
-            if new_blanks_list == blanks_list:
+            if (guess not in word_list):
                 print('Your letter isn\'t here')
                 number_of_guesses = number_of_guesses + 1
                 show_hang(number_of_guesses, word)
 
-                if number_of_guesses < 9:
+                if number_of_guesses < 7:
                     print('Keep guessing')
                     print(''.join(blanks_list))
 
                 else:
-                    print(f'{bcolors.Red}{bcolors.BOLD}Oh no, you killed him!{bcolors.ENDC}')
+                    print(f'\n{bcolors.Red}{bcolors.BOLD}Oh no, you killed him!{bcolors.ENDC}')
                     break
-        
-            elif word_list != blanks_list:
 
-                blank_list = new_blanks_list[:]
+            else:
+
+                blank_list = new_blanks_list
                 print(''.join(blanks_list))
                 show_hang(number_of_guesses, word)
 
                 if word_list == new_blanks_list:
                     print("" + ' '.join(new_blanks_list))
-                    print(f'{bcolors.BOLD}\n You Win!!{bcolors.ENDC}')
+                    print(f'{bcolors.BOLD}\nYou Win!!{bcolors.ENDC}')
                     break
                 else:
                     print('Great guess, keep Guessing!')
