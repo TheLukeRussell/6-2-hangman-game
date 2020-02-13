@@ -117,7 +117,7 @@ def hangMan():
     print('\n')
     print("" + ' '.join(blanks_list))
     print('\nGuess a letter!')
-    print(word)
+    # print(word)
 
     while number_of_guesses < 7:
         guess = input("> ")
